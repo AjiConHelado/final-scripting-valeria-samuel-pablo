@@ -10,9 +10,9 @@ public enum EnemyType
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int hp = 999, damage = 1, experience_reward = 400;
-    [SerializeField] private float speed;
-    [SerializeField] private EnemyType type;
+    [SerializeField] private int hp = 999; 
+    
+    [SerializeField] public EnemyType type;
     
     private Transform targetDestination;
     private GameObject targetGameobject;
@@ -20,9 +20,15 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rgbd2d;
     [HideInInspector] public EnemySpawner enemySpawner;
     
+    public EnemyData stats;
     private void Awake()
     {
         rgbd2d = GetComponent<Rigidbody2D>();
+      
+    }
+    public void Start()
+    {
+        StartCoroutine("timer");
     }
 
     public void SetTarget(GameObject target)
@@ -34,7 +40,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rgbd2d.velocity = direction * speed;
+        rgbd2d.velocity = direction * stats.speed;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -51,8 +57,29 @@ public class Enemy : MonoBehaviour
         {
             targetCharacter = targetGameobject.GetComponent<Character>();
         }
-        targetCharacter.TakeDamage(damage);
+        targetCharacter.TakeDamage(stats.damage);
     }
+    public IEnumerator timer()
+    {
+        while (true)
+        {
+
+            for (int i = stats.timer; i > 0; i--)
+            {
+
+
+               
+                yield return new WaitForSeconds(1.0f);
+            }
+            if (enemySpawner != null)
+            {
+                enemySpawner.Return(this, type);
+
+            }
+        }
+    }
+       
+
 
     public void TakeDamage(int damage)
     {
@@ -60,7 +87,7 @@ public class Enemy : MonoBehaviour
 
         if (hp < 1)
         {
-            targetGameobject.GetComponent<Level>().AddExperience(experience_reward);
+            targetGameobject.GetComponent<Level>().AddExperience(stats.ExpReward);
             
             if (enemySpawner != null)
             { 

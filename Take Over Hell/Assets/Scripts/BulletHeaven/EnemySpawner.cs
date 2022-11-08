@@ -8,18 +8,23 @@ public enum Round
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] public EnemyData data1;
+    [SerializeField] public EnemyData data2;
+    [SerializeField] public EnemyData data3;
     [SerializeField] private GameObject enemy1, enemy2, enemy3;
     [SerializeField] private float spawnTimer;
     [SerializeField] private Vector2 spawnArea;
     
     [SerializeField] private int initialSize, incrementAmount;
-
+     [SerializeField] private GameObject player;
     private Queue<Enemy> pool1, pool2, pool3;
     private Round currentRound = Round.Round1;
-    private Transform player;
+    //private Transform player;
     private float timer;
     private uint enemyCount;
     private byte maxEnemies = 10, zero = 0, one = 1;
+
+    
     
     private void Awake()
     {
@@ -30,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
     
     void Start()
     {
-        player = FindObjectOfType<PlayerController>().transform;
+        //player = FindObjectOfType<PlayerController>().transform;
         AddInstances(initialSize, pool1, enemy1);
         AddInstances(initialSize, pool2, enemy2);
         AddInstances(initialSize, pool3, enemy3);
@@ -48,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject SpawnEnemy()
     {
+        
         switch (ChangeRound())
         {
             case Round.Round1:
@@ -55,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
             case Round.Round2:
                 return Allocate(pool2, enemy2);
             case Round.Round3:
-                return Allocate(pool2, enemy3);
+                return Allocate(pool3, enemy3);
         }
 
         return null;
@@ -120,7 +126,21 @@ public class EnemySpawner : MonoBehaviour
             Enemy obj = Instantiate(prefab, gameObject.transform).GetComponent<Enemy>();
             obj.SetTarget(player.gameObject);
             obj.enemySpawner = this;
-            obj.gameObject.SetActive(false);
+
+            if(obj.type==EnemyType.three)
+            {
+                obj.stats = data3;
+            }
+            else if(obj.type == EnemyType.two)
+            {
+                obj.stats = data2;
+            }
+            else {
+                obj.stats = data1;
+            }
+
+                obj.gameObject.SetActive(false);
+            
             instances.Enqueue(obj);
         }
     }
@@ -132,6 +152,7 @@ public class EnemySpawner : MonoBehaviour
         if (instances.Count == 0)
         {
             AddInstances(incrementAmount, instances, enemy);
+            enemyCount++;
             return Allocate(instances, enemy);
         }
             
@@ -139,6 +160,7 @@ public class EnemySpawner : MonoBehaviour
         instance.SetActive(true);
 
         enemyCount++;
+        
         
         return instance;
     }

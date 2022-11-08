@@ -49,7 +49,7 @@ public class WorldScrolling : MonoBehaviour
             {
                 int tileToUpdate_x = CalculatePositionOnAxis(playerTilePosition.x + pov_x, true);
                 int tileToUpdate_y = CalculatePositionOnAxis(playerTilePosition.y + pov_y, false);
-                
+
 
                 GameObject tile = terrainTiles[tileToUpdate_x, tileToUpdate_y];
                 tile.transform.position = CalculateTilePosition(playerTilePosition.x + pov_x, playerTilePosition.y + pov_y);
