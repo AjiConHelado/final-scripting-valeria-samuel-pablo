@@ -26,11 +26,7 @@ public class Enemy : MonoBehaviour
         rgbd2d = GetComponent<Rigidbody2D>();
       
     }
-    public void Start()
-    {
-        StartCoroutine("timer");
-    }
-
+ 
     public void SetTarget(GameObject target)
     {
         targetGameobject = target;
@@ -59,25 +55,18 @@ public class Enemy : MonoBehaviour
         }
         targetCharacter.TakeDamage(stats.damage);
     }
-    public IEnumerator timer()
+
+    public void OnTriggerExit2D(Collider2D other)
     {
-        while (true)
+
+        if (other.gameObject.tag == "MainCamera")
         {
 
-            for (int i = stats.timer; i > 0; i--)
-            {
-
-
-               
-                yield return new WaitForSeconds(1.0f);
-            }
-            if (enemySpawner != null)
-            {
-                enemySpawner.Return(this, type);
-
-            }
+            enemySpawner.Return(this, type);
+            return;
         }
     }
+
        
 
 
@@ -99,3 +88,4 @@ public class Enemy : MonoBehaviour
         }
     }
 }
+

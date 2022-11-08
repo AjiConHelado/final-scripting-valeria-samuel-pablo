@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemyData :ScriptableObject
 {
    public int ExpReward;
-   public int timer;
+  
    public float speed;
    public int damage;
+    Camera camera;
 }

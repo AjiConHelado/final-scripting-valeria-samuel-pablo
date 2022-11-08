@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: enemy 2
   m_EditorClassIdentifier: 
   ExpReward: 600
-  timer: 20
+  timer: 3
   speed: 1
   damage: 2

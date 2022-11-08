@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: enemigo base
   m_EditorClassIdentifier: 
   ExpReward: 400
-  timer: 20
+  timer: 3
   speed: 2
   damage: 1
