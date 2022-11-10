@@ -7,7 +7,7 @@ using UnityEngine.Timeline;
 
 public enum EnemyType
 {
-    One, two, three, boss
+    One, two, three, four
 }
 
 public class Enemy : MonoBehaviour
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private int hp = 999;
 
-    [SerializeField] private EnemyType type;
+    [SerializeField] public EnemyType type;
     [SerializeField] private GameObject bossProjectile;
     public EnemyData stats;
     private Transform targetDestination;
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 direction = (targetDestination.position - transform.position).normalized;
 
-        if (type != EnemyType.boss)
+        if (type != EnemyType.four)
         {
             rgbd2d.velocity = direction * stats.speed;
         }
@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHp < 1)
         {
-            targetGameobject.GetComponent<Level>().AddExperience(stats.expReward);
+            targetGameobject.GetComponent<Level>().AddExperience(stats.ExpReward);
 
             if (enemySpawner != null)
             {
@@ -134,4 +134,3 @@ public class Enemy : MonoBehaviour
         }
     }
 }
-

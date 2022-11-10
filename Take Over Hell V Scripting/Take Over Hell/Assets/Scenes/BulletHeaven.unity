@@ -4243,6 +4243,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4461,6 +4462,32 @@ MonoBehaviour:
   scr: {fileID: 519420034}
   sword: {fileID: 8300000, guid: fbaccc03d02689542b8f1ba4a0d5eb39, type: 3}
   whipe: {fileID: 8300000, guid: c70878bec7e75e0489b2692409a652d0, type: 3}
+--- !u!61 &519420036
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02131939, y: -0.11413956}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 29.197046, y: 20.708084}
+  m_EdgeRadius: 0
 --- !u!4 &523862689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2865072397513674222, guid: 26cf8af4f9ee02f4d9d04973eb000270, type: 3}
@@ -11271,6 +11298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daedf33fb71f5ce42a69b7d5bcfa76b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data1: {fileID: 11400000, guid: 3173688a1f1a18d4d8ec57519e62a889, type: 2}
+  data2: {fileID: 11400000, guid: d23ed63f1e7a56c4da57b3aee0a75e41, type: 2}
+  data3: {fileID: 11400000, guid: 99dd1b8a3fbfe1f4294e83287679c80e, type: 2}
+  data4: {fileID: 11400000, guid: 5f5e10b35f4e3904e8dac0aebf1e5a76, type: 2}
   enemy1: {fileID: 8085915342430978490, guid: 56068522dea8d01428efd7493bbb7a7a, type: 3}
   enemy2: {fileID: 6437908836610960912, guid: b6983b28692023d4892e40811ad71e8c, type: 3}
   enemy3: {fileID: 8085915342430978490, guid: 593a0fee0262f8b459c6edf09eaa3c9e, type: 3}
@@ -11279,6 +11310,7 @@ MonoBehaviour:
   spawnArea: {x: 15, y: 8}
   initialSize: 10
   incrementAmount: 5
+  player: {fileID: 21109035}
 --- !u!1 &1543991925
 GameObject:
   m_ObjectHideFlags: 0

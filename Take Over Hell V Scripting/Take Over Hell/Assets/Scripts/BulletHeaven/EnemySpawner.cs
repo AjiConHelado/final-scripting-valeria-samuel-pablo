@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemy1, enemy2, enemy3, boss;
     [SerializeField] private float spawnTimer;
     [SerializeField] private Vector2 spawnArea;
-
+    private EnemyType Type;
     [SerializeField] private int initialSize, incrementAmount;
 
     public Transform thisIsBoss { get; private set; }
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>().transform;
+        //player = FindObjectOfType<PlayerController>().transform;
         AddInstances(initialSize, pool1, enemy1);
         AddInstances(initialSize, pool2, enemy2);
         AddInstances(initialSize, pool3, enemy3);
